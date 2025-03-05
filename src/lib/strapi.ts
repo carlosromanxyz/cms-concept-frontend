@@ -1,9 +1,5 @@
-import Strapi from 'strapi-sdk-js';
+import { strapi } from '@strapi/client';
 
-export const strapi = new Strapi({
-  // Options goes here
-  // Ex: url: 'http://localhost:1337'
-  // Ex for prefix: /api
-  // All as default
-  // Check more on https://strapi-sdk-js.netlify.app/api/options
-});
+export const client = strapi({
+  baseURL: `${process.env.NEXT_PUBLIC_API_URL}`
+})

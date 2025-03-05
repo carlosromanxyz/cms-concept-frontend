@@ -1,13 +1,21 @@
-import { IHeader } from "@/interface/header";
-import { strapi } from "@/lib/strapi";
-import { StrapiResponse } from "strapi-sdk-js";
+import { client } from "@/lib/strapi";
 
-export const getHeaderContent = async (): Promise<StrapiResponse<IHeader>> => {
+export const getHeaderContent = async () => {
   try {
-    const response: StrapiResponse<IHeader> = await strapi.find('header', {
-      populate: ['logo.image', 'navigation', 'cta'],
+    const response = await client.single('header').find({
+      populate: {
+        logo: {
+          populate: 'image'
+        },
+        navigation: {
+          populate: '*'
+        },
+        cta: {
+          populate: '*'
+        }
+      }
     });
-    return response;
+    return response.data;
   } catch (error) {
     console.error("Error fetching the header content:", error);
     throw new Error("Error fetching the header content");
