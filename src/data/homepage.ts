@@ -1,17 +1,19 @@
 import { client } from "@/lib/strapi";
 
-export const getHomePageContent = async () => {
+export const getHomePageContent = async ( isDraftMode: boolean = false ) => {
   try {
-    const response = await client.single('homepage').find({
+    const response = await client.single("homepage").find({
+      status: isDraftMode ? "draft" : "published",
       populate: {
         hero: {
-          populate: '*'
-        }
-      }
+          populate: "*",
+        },
+      },
     });
+
     return response.data;
   } catch (error) {
     console.error("Error fetching the home page content:", error);
     throw new Error("Error fetching the home page content");
   }
-}
+};
