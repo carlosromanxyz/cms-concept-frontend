@@ -1,10 +1,12 @@
 import { getHeaderContent } from "@/data/header";
+import { draftMode } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 
 export default async function Header() {
+  const isDraftMode = (await draftMode()).isEnabled;
   const assetsPath = process.env.NEXT_PUBLIC_ASSETS_PATH;
-  const content = await getHeaderContent();
+  const content = await getHeaderContent(isDraftMode);
   const logoUrl = `${assetsPath}${content.logo.image.url}`;
   const navigationItems = content.navigation;
   const cta = content.cta;
