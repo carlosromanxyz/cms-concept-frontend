@@ -2,6 +2,7 @@ import { getHeaderContent } from "@/data/header";
 import { draftMode } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
+import CloseDraftMode from "../atoms/close-draft-mode";
 
 export default async function Header() {
   const isDraftMode = (await draftMode()).isEnabled;
@@ -12,6 +13,16 @@ export default async function Header() {
   const cta = content.cta;
   return (
     <header className="fixed top-0 left-0 right-0 py-4">
+      {isDraftMode && (
+        <div className="bg-yellow-950 text-yellow-50 text-center p-1 mb-4">
+          <div className="container mx-auto px-4 flex justify-between items-center gap-2">
+            <span>
+              {'You are in draft mode'}
+            </span>
+            <CloseDraftMode />
+          </div>
+        </div>
+      )}
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link href="/" className="block">
           <Image

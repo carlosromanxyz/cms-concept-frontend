@@ -5,10 +5,11 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const url = searchParams.get("url");
   const status = searchParams.get("status");
+  const environment = process.env.NODE_ENV;
 
   // Enable or disable draft mode
   const draft = await draftMode();
-  if (status === "published") {
+  if (status === "published" || environment === "production") {
     draft.disable();
   } else {
     draft.enable();

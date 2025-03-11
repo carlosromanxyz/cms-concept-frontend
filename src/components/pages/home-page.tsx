@@ -1,7 +1,7 @@
 import { draftMode } from "next/headers";
 import { getHomePageContent } from "@/data/homepage";
 import Hero from "../molecules/hero";
-import Link from "next/link";
+import CloseDraftMode from "../atoms/close-draft-mode";
 
 export default async function HomePage() {
     const isDraftMode = (await draftMode()).isEnabled;
@@ -27,9 +27,7 @@ export default async function HomePage() {
             imageHeight={imageHeight}
           />
           {isDraftMode && (
-              <Link href="/api/exit-draft" className="text-blue-500">
-                {'Salir del modo borrador'}
-              </Link>
+            <CloseDraftMode />
           )}
         </div>
       </main>

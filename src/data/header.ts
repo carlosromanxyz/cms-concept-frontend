@@ -16,7 +16,6 @@ export const getHeaderContent = async ( isDraftMode: boolean = false ) => {
         }
       }
     });
-    console.dir(response);
     return response.data;
   } catch (error) {
     console.error("Error fetching the header content:", error);
