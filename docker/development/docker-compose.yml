@@ -1,0 +1,8 @@
+services:
+  cms-concept-frontend-development:
+    build:
+      context: ../../
+      dockerfile: docker/development/Dockerfile
+    image: cms-concept-frontend-development
+    ports:
+      - "3001:3000"

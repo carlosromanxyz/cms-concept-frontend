@@ -1,0 +1,8 @@
+services:
+  cms-concept-frontend-staging:
+    build:
+      context: ../../
+      dockerfile: docker/staging/Dockerfile
+    image: cms-concept-frontend-staging
+    ports:
+      - "3002:3000"
