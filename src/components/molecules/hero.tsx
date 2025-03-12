@@ -1,6 +1,5 @@
 import React from 'react'
 import Image from 'next/image'
-import { Badge } from '../ui/badge';
 
 interface IHero {
   imageSrc: string;
@@ -22,7 +21,7 @@ export default function Hero({ imageSrc, imageAlt, imageWidth, imageHeight, head
         className='object-cover w-full h-full'
       />
       <div className=''>
-        <Badge>{heading}</Badge>
+        <span className='p-3 bg-gray-700 text-white'>{heading}</span>
         <h1 className='text-4xl font-bold'>{title}</h1>
       </div>
     </section>
