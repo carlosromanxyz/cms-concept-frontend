@@ -9,3 +9,13 @@ export const getAllLandings = async () => {
     return null;
   }
 };
+
+export const getLandingContent = async (id: string) => {
+  try {
+    const response = await client.collection('landings').findOne(id);
+    return response;
+  } catch (error) {
+    console.error("Error fetching landing content:", error);
+    return null;
+  }
+}
