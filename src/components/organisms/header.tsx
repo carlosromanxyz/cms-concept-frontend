@@ -12,7 +12,7 @@ export default async function Header() {
   const navigationItems = content.navigation;
   const cta = content.cta;
   return (
-    <header className="fixed top-0 left-0 right-0 py-4 backdrop-blur-md bg-black/20 z-10">
+    <header className="fixed top-0 left-0 right-0 py-4 backdrop-blur-md bg-white/20 z-10">
       {isDraftMode && (
         <div className="bg-yellow-950 text-yellow-50 text-center p-1 mb-4">
           <div className="container mx-auto px-4 flex justify-between items-center gap-2">

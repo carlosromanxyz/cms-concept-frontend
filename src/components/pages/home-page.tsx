@@ -18,18 +18,18 @@ export default async function HomePage() {
     const imageHeight = content.hero.image.height;
 
     return (
-      <main className="h-screen bg-black flex text-white items-center">
-        <div className="container mx-auto px-4">
-          <Hero
-            imageSrc={heroImageUrl}
-            imageAlt={imageAlt}
-            imageWidth={imageWidth}
-            imageHeight={imageHeight}
-          />
-          {isDraftMode && (
-            <CloseDraftMode />
-          )}
-        </div>
+      <main className="bg-black text-white">
+        <Hero
+          imageSrc={heroImageUrl}
+          imageAlt={imageAlt}
+          imageWidth={imageWidth}
+          imageHeight={imageHeight}
+          heading={content.hero.heading}
+          title={content.hero.title}
+        />
+        {isDraftMode && (
+          <CloseDraftMode />
+        )}
       </main>
     );
 }
