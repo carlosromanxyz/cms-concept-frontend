@@ -2,15 +2,17 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
-  console.log(`Middleware intercepting request: ${request.nextUrl.pathname}`);
-
   const response = NextResponse.next();
+  const environment = process.env.NODE_ENV;
 
-  // Set Content-Security-Policy header to allow iframe embedding
-  response.headers.set(
-    "Content-Security-Policy",
-    "frame-ancestors 'self' http://localhost:1337"
-  );
+  // First check if we are in development
+  if (environment === "development") { // Available ONLY in development mode
+    // Set Content-Security-Policy header to allow iframe embedding on Strapi Admin
+    response.headers.set(
+      "Content-Security-Policy",
+      "frame-ancestors 'self' http://localhost:1337"
+    );
+  }
 
   // Si la URL termina en "/preview", redirigir a "/api/draft"
   if (request.nextUrl.pathname.endsWith("/preview")) {
