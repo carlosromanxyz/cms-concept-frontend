@@ -10,10 +10,17 @@ export const getAllLandings = async () => {
   }
 };
 
-export const getLandingContent = async (id: string) => {
+export const getLandingContentBySlug = async (slug: string) => {
   try {
-    const response = await client.collection('landings').findOne(id);
-    return response;
+    const landing = await client.collection('landings').find({
+      filters: { slug: { $eq: slug } },
+      populate: {
+        content: {
+          populate: '*', // Carga todos los datos dentro de content, incluyendo bloques
+        },
+      },
+    });
+    return landing;
   } catch (error) {
     console.error("Error fetching landing content:", error);
     return null;

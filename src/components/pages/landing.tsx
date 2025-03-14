@@ -1,14 +1,20 @@
-import { getLandingContent } from "@/data/landings";
+import { getLandingContentBySlug } from "@/data/landings";
 import { draftMode } from "next/headers"
+import DynamicZone from "../organisms/dynamic-zone";
 
-export default async function LandingPage() {
+interface ILanding {
+  slug: string;
+}
+
+export default async function LandingPage({ slug }: ILanding) {
   const isDraftMode = (await draftMode()).isEnabled;
-  const landingContent = getLandingContent("landing-page");
-  console.log(landingContent);
+  const components = await getLandingContentBySlug(slug);
+  console.log(components);
   return (
-    <main className="h-screen bg-black text-white flex justify-center items-center">
-      <div className="block">
+    <main className="bg-black text-white py-24">
+      <div className="container mx-auto px-4">
         <h1 className="text-4xl font-bold">Landing Page</h1>
+        <DynamicZone components={components} />
         {isDraftMode && (
           <p className="text-blue-500">Draft Mode</p>
         )}
