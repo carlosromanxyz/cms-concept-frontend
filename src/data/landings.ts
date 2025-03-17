@@ -12,17 +12,18 @@ export const getAllLandings = async () => {
 
 export const getLandingContentBySlug = async (slug: string) => {
   try {
-    const landing = await client.collection('landings').find({
+    const { data } = await client.collection('landings').find({
       filters: { slug: { $eq: slug } },
       populate: {
         content: {
-          populate: '*', // Carga todos los datos dentro de content, incluyendo bloques
+          populate: '*',
         },
       },
     });
-    return landing;
+
+    return data
   } catch (error) {
     console.error("Error fetching landing content:", error);
-    return null;
+    throw new Error("Error fetching landing content");
   }
 }
