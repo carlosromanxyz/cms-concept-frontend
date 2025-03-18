@@ -12,7 +12,7 @@ export default async function LandingPage({ slug }: ILanding) {
   const pageTitle = content[0].title;
   const components = content[0].content;
   return (
-    <main className="bg-black text-white py-24">
+    <main className="bg-black text-white py-24 font-[family:var(--font-montserrat)]">
       <div className="container mx-auto px-4">
         <h1 className="text-4xl font-bold mb-8">
           {pageTitle}
