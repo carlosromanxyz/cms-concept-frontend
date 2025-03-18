@@ -1,13 +1,12 @@
-export interface ITestimonialItem {
-  id: number;
-  name: string;
-  content: string;
-}
+import { IDynamicZoneBlock } from "./dynamic-zone";
 
-export interface ITestimonialBlock {
-  __component: "blocks.testimonial";
+export interface ILanding {
   id: number;
-  items: ITestimonialItem[];
+  documentId: string;
+  title: string;
+  slug: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  content: IDynamicZoneBlock[];
 }
-
-export type IDynamicZoneBlock = ITestimonialBlock;
