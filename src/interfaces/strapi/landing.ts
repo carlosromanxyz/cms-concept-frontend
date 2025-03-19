@@ -15,10 +15,13 @@ export interface Datum {
 }
 
 export interface Content {
-  __component: string;
-  id:          number;
-  item?:       PurpleItem[];
-  items?:      FluffyItem[];
+  __component:          string;
+  id:                   number;
+  items?:               FluffyItem[];
+  item?:                PurpleItem[];
+  displayUF?:           boolean;
+  displayIPSA?:         boolean;
+  displayCurrentDolar?: boolean;
 }
 
 export interface PurpleItem {
