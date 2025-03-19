@@ -1,12 +1,55 @@
-import { IDynamicZoneBlock } from "./dynamic-zone";
-
 export interface ILanding {
-  id: number;
-  documentId: string;
-  title: string;
-  slug: string;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-  content: IDynamicZoneBlock[];
+  data: Datum[];
+  meta: Meta;
+}
+
+export interface Datum {
+  id:          number;
+  documentId:  string;
+  title:       string;
+  slug:        string;
+  createdAt:   Date;
+  updatedAt:   Date;
+  publishedAt: Date;
+  content:     Content[];
+}
+
+export interface Content {
+  __component: string;
+  id:          number;
+  item?:       PurpleItem[];
+  items?:      FluffyItem[];
+}
+
+export interface PurpleItem {
+  id:      number;
+  text:    Text[];
+  heading: string;
+}
+
+export interface Text {
+  type:     string;
+  children: Child[];
+}
+
+export interface Child {
+  type: string;
+  text: string;
+}
+
+export interface FluffyItem {
+  id:      number;
+  name:    string;
+  content: string;
+}
+
+export interface Meta {
+  pagination: Pagination;
+}
+
+export interface Pagination {
+  page:      number;
+  pageSize:  number;
+  pageCount: number;
+  total:     number;
 }

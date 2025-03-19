@@ -1,15 +1,15 @@
-import { ITestimonialItem } from '@/interfaces/strapi/landing'
+import { FluffyItem } from '@/interfaces/strapi/landing'
 import React from 'react'
 import Testimonial from '../atoms/testimonial';
 
 interface ITestimonials {
-  testimonials: ITestimonialItem[]
+  testimonials: FluffyItem[]
 }
 
 export default function Testimonials({ testimonials }: ITestimonials) {
   return (
     <div className='grid grid-cols-3 gap-4'>
-      {testimonials.map((testimonial: ITestimonialItem) => (
+      {testimonials.map((testimonial: FluffyItem) => (
         <Testimonial
           key={testimonial.id}
           name={testimonial.name}

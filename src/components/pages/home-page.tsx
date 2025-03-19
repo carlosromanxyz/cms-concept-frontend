@@ -2,6 +2,7 @@ import { draftMode } from "next/headers";
 import { getHomePageContent } from "@/data/homepage";
 import Hero from "../molecules/hero";
 import CloseDraftMode from "../atoms/close-draft-mode";
+import Link from "next/link";
 
 export default async function HomePage() {
     const isDraftMode = (await draftMode()).isEnabled;
@@ -30,6 +31,17 @@ export default async function HomePage() {
         {isDraftMode && (
           <CloseDraftMode />
         )}
+
+        <section className="py-10">
+          <div className="container px-4 mx-auto grid grid-cols-2 gap-4">
+            <Link href={'/landing/cambiate-a-uno-y-aumenta-tu-sueldo'} className="bg-gray-500 text-white text-center block p-5 rounded-lg font-bold uppercase">
+              {'Ver landing con slug'}
+            </Link>
+            <Link href={'/landing/landing-inexistente'} className="bg-gray-500 text-white text-center block p-5 rounded-lg font-bold uppercase">
+              {'Ver landing sin slug'}
+            </Link>
+          </div>
+        </section> 
       </main>
     );
 }

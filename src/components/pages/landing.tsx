@@ -8,9 +8,13 @@ interface ILanding {
 
 export default async function LandingPage({ slug }: ILanding) {
   const isDraftMode = (await draftMode()).isEnabled;
-  const content = await getLandingContentBySlug(slug);
-  const pageTitle = content[0].title;
-  const components = content[0].content;
+  const content = await getLandingContentBySlug(slug, isDraftMode);
+  const pageTitle = content.title;
+
+  if (!content) {
+    return <div>{'Error al cargar el contenido de la página.'}</div>;
+  }
+
   return (
     <main className="bg-black text-white py-24 font-[family:var(--font-montserrat)]">
       <div className="container mx-auto px-4">
@@ -18,7 +22,9 @@ export default async function LandingPage({ slug }: ILanding) {
           {pageTitle}
         </h1>
         
-        <DynamicZone components={components} />
+        <DynamicZone components={[
+          ...content.content,
+        ]} />
 
         {isDraftMode && (
           <p className="text-blue-500">Draft Mode</p>

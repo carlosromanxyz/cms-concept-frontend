@@ -1,3 +1,4 @@
+import { Datum } from "@/interfaces/strapi/landing";
 import { client } from "@/lib/strapi";
 
 export const getAllLandings = async () => {
@@ -10,9 +11,10 @@ export const getAllLandings = async () => {
   }
 };
 
-export const getLandingContentBySlug = async (slug: string) => {
+export const getLandingContentBySlug = async (slug: string, isDraftMode: boolean): Promise<Datum> => {
   try {
     const { data } = await client.collection('landings').find({
+      status: isDraftMode ? "draft" : "published",
       filters: { slug: { $eq: slug } },
       populate: {
         content: {
@@ -21,7 +23,13 @@ export const getLandingContentBySlug = async (slug: string) => {
       },
     });
 
-    return data
+    return {
+      id: data[0].id,
+      title: data[0].title,
+      slug: data[0].slug,
+      publishedAt: data[0].publishedAt,
+      content: data[0].content,
+    } as Datum;
   } catch (error) {
     console.error("Error fetching landing content:", error);
     throw new Error("Error fetching landing content");
